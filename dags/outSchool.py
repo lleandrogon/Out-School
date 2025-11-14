@@ -1,6 +1,7 @@
 from airflow import DAG
 from airflow.providers.standard.operators.python import PythonOperator
 from airflow.providers.standard.operators.bash import BashOperator
+from airflow.providers.common.sql.operators.sql import SQLExecuteQueryOperator
 
 from datetime import datetime
 import pendulum
@@ -11,6 +12,7 @@ from helpers.extraction.upperSecondaryExtract import *
 from helpers.transformation.primaryTransform import *
 from helpers.transformation.lowerSecondaryTransform import *
 from helpers.transformation.upperSecondaryTransform import *
+from helpers.queries.createTableOutSchool import *
 
 dag = DAG(
     dag_id = "out_school",
@@ -65,6 +67,20 @@ t_upper_secondary = PythonOperator(
     dag = dag
 )
 
+t_validate = BashOperator(
+    task_id = "transform_validate",
+    bash_command = "echo 'Transformação validada!'"
+)
+
+ct_out_school = SQLExecuteQueryOperator(
+    task_id = "create_table_out_school",
+    conn_id = "education_docker",
+    sql = create_table,
+    dag = dag
+)
+
 [e_primary, e_lower_secondary, e_upper_secondary] \
     >> e_validate \
-    >> [t_primary, t_lower_secondary, t_upper_secondary]
+    >> [t_primary, t_lower_secondary, t_upper_secondary] \
+    >> t_validate \
+    >> ct_out_school
