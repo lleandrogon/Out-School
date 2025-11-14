@@ -1,5 +1,7 @@
 import pandas as pd
 
+from .renameColumns import *
+
 def transform_primary(**kwargs):
     df = kwargs["ti"].xcom_pull(task_ids = "extract_primary")
 
@@ -13,5 +15,9 @@ def transform_primary(**kwargs):
     df.dropna(inplace = True, subset = ["Region"])
 
     df.dropna(inplace = True, subset = ["Total"])
+
+    rename_columns(df)
+
+    df["education_level"] = "primary"
 
     return df
