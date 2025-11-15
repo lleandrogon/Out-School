@@ -1,6 +1,7 @@
 create_table = """--sql
     CREATE TABLE IF NOT EXISTS out_school(
-        id SERIAL PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+        id SERIAL PRIMARY KEY,
+        iso3 VARCHAR(3),
         countries_and_areas VARCHAR(100),
         region VARCHAR(50),
         sub_region VARCHAR(50),
@@ -17,6 +18,7 @@ create_table = """--sql
         richest_wealth_quintile DECIMAL(5,2),
         data_source VARCHAR(100),
         time_period INT,
-        CONSTRAINT country_time_source UNIQUE (countries_and_areas, data_source, time_period)
+        education_level VARCHAR(20),
+        CONSTRAINT country_time_source UNIQUE (countries_and_areas, data_source, time_period, education_level)
     );
 """

@@ -1,0 +1,12 @@
+{"timestamp":"2025-11-14T15:21:05.077478Z","level":"info","event":"DAG bundles loaded: dags-folder, example_dags","logger":"airflow.dag_processing.bundles.manager.DagBundlesManager","filename":"manager.py","lineno":179}
+{"timestamp":"2025-11-14T15:21:05.078608Z","level":"info","event":"Filling up the DagBag from /opt/airflow/dags/outSchool.py","logger":"airflow.models.dagbag.DagBag","filename":"dagbag.py","lineno":593}
+{"timestamp":"2025-11-14T15:21:05.188124Z","level":"info","event":"Task instance is in running state","logger":"task.stdout"}
+{"timestamp":"2025-11-14T15:21:05.188402Z","level":"info","event":" Previous state of the Task instance: TaskInstanceState.QUEUED","logger":"task.stdout"}
+{"timestamp":"2025-11-14T15:21:05.188636Z","level":"info","event":"Current task name:load_data","logger":"task.stdout"}
+{"timestamp":"2025-11-14T15:21:05.188776Z","level":"info","event":"Dag name:out_school","logger":"task.stdout"}
+{"timestamp":"2025-11-14T15:21:05.879018Z","level":"info","event":"Loaded 330 rows into out_school so far","logger":"airflow.task.hooks.airflow.providers.***.hooks.***.PostgresHook","filename":"sql.py","lineno":944}
+{"timestamp":"2025-11-14T15:21:05.879561Z","level":"info","event":"Done loading. Loaded a total of 330 rows into out_school","logger":"airflow.task.hooks.airflow.providers.***.hooks.***.PostgresHook","filename":"sql.py","lineno":963}
+{"timestamp":"2025-11-14T15:21:05.880576Z","level":"info","event":"Done. Returned value was: None","logger":"airflow.task.operators.airflow.providers.standard.operators.python.PythonOperator","filename":"python.py","lineno":215}
+{"timestamp":"2025-11-14T15:21:05.901185Z","level":"info","event":"Task instance in success state","logger":"task.stdout"}
+{"timestamp":"2025-11-14T15:21:05.901445Z","level":"info","event":" Previous state of the Task instance: TaskInstanceState.RUNNING","logger":"task.stdout"}
+{"timestamp":"2025-11-14T15:21:05.901687Z","level":"info","event":"Task operator:<Task(PythonOperator): load_data>","logger":"task.stdout"}

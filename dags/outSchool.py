@@ -13,6 +13,7 @@ from helpers.transformation.primaryTransform import *
 from helpers.transformation.lowerSecondaryTransform import *
 from helpers.transformation.upperSecondaryTransform import *
 from helpers.queries.createTableOutSchool import *
+from helpers.loading.loadData import *
 
 dag = DAG(
     dag_id = "out_school",
@@ -79,8 +80,15 @@ ct_out_school = SQLExecuteQueryOperator(
     dag = dag
 )
 
+l_data = PythonOperator(
+    task_id = "load_data",
+    python_callable = load_data,
+    dag = dag
+)
+
 [e_primary, e_lower_secondary, e_upper_secondary] \
     >> e_validate \
     >> [t_primary, t_lower_secondary, t_upper_secondary] \
     >> t_validate \
-    >> ct_out_school
+    >> ct_out_school \
+    >> l_data
