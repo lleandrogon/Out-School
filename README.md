@@ -70,9 +70,3 @@ Para que o Airflow consiga enviar os dados transformados para o PostgreSQL da su
 Essa conexão será usada pelo **PostgresHook** dentro das tasks da DAG.
 
 > **Importante:** `host.docker.internal` é necessário para que o container do Airflow consiga enxergar o PostgreSQL que está rodando na sua máquina.
-
----
-
-Depois dessa etapa, seu pipeline já estará pronto para extrair, transformar e carregar os dados no banco.
-
-Se quiser, posso revisar o README completo e reorganizar para ficar ainda mais profissional.
